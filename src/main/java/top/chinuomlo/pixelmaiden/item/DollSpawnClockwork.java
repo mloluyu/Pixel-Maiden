@@ -1,9 +1,7 @@
 package top.chinuomlo.pixelmaiden.item;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,21 +19,21 @@ public class DollSpawnClockwork extends Item {
     public InteractionResult useOn(UseOnContext context) {
         Level world = context.getLevel();
         if (!world.isClientSide) {
-            BlockPos position = context.getClickedPos().relative(context.getClickedFace());// 生成位置在点击的方块
+            BlockPos pos = context.getClickedPos().relative(context.getClickedFace());
+            ItemStack itemstack = context.getItemInHand();
             Player player = context.getPlayer();
-            ItemStack itemStack = context.getItemInHand();
+            if (player != null && player.mayUseItemAt(pos, context.getClickedFace(), itemstack)) {
+                // 生成生物实体
+                Doll doll = new Doll(Registies.DOLL.get(), world);
+                doll.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getRandom().nextFloat() * 360.0F, 0.0F);
+                world.addFreshEntity(doll);
 
-            Doll doll = new Doll(Registies.DOLL.get(), world);
-            doll.moveTo(position.getX(), position.getY(), position.getZ(), player.getYRot(), player.getXRot());
-            world.addFreshEntity(doll);
-
-            if (!player.getAbilities().instabuild) {
-                itemStack.shrink(1); // 使用后减少一个物品
+                if (!player.getAbilities().instabuild) {
+                    itemstack.shrink(1);
+                }
+                return InteractionResult.SUCCESS;
             }
-
-            return InteractionResult.SUCCESS;
         }
-
         return InteractionResult.FAIL;
     }
 }

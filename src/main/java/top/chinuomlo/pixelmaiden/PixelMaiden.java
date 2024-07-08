@@ -18,8 +18,6 @@ public class PixelMaiden {
     public static final String MODID = "pixel_maiden";
     private static final Logger LOGGER = LogUtils.getLogger();
 
-
-
     public PixelMaiden() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(modEventBus);
