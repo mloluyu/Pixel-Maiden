@@ -13,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import top.chinuomlo.pixelmaiden.entity.Doll;
+import top.chinuomlo.pixelmaiden.item.DollSpawnClockwork;
 import top.chinuomlo.pixelmaiden.item.GrimoireBook;
 
 import static top.chinuomlo.pixelmaiden.PixelMaiden.MODID;
@@ -25,7 +26,10 @@ public class Registies {
 
     public static final RegistryObject<EntityType<Doll>> DOLL = ENTITY_TYPES.register("doll", () -> EntityType.Builder.of(Doll::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build(new ResourceLocation(MODID, "doll").toString()));
 
+    //public static final RegistryObject<Block> doll_shelf = BLOCKS.register("doll_shelf"() -> new BlockBehaviour.Properties();
+
     public static final RegistryObject<Item> grimoire_book = ITEMS.register("grimoire_book", () -> new GrimoireBook(new Item.Properties()));
+    public static final RegistryObject<Item> doll_spawn_clockwork = ITEMS.register("doll_spawn_clockwork", () -> new DollSpawnClockwork(new Item.Properties()));
 
     public static final RegistryObject<CreativeModeTab> mytab = CREATIVE_MODE_TABS.register("mytab", () -> CreativeModeTab.builder()
             .title(Component.translatable("mytabname"))
@@ -33,6 +37,7 @@ public class Registies {
             .displayItems((parm, output) -> {
                 //output.accept(myblockitem.get());
                 output.accept(grimoire_book.get());
+                output.accept(doll_spawn_clockwork.get());
             })
             .build());
 }
