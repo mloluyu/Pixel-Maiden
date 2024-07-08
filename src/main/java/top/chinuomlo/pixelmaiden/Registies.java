@@ -1,17 +1,23 @@
 package top.chinuomlo.pixelmaiden;
 
+import com.mojang.serialization.Codec;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SoundType;
+import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.common.loot.IGlobalLootModifier;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import top.chinuomlo.pixelmaiden.block.DollShelf;
 import top.chinuomlo.pixelmaiden.entity.Doll;
 import top.chinuomlo.pixelmaiden.item.DollSpawnClockwork;
 import top.chinuomlo.pixelmaiden.item.GrimoireBook;
@@ -26,8 +32,9 @@ public class Registies {
 
     public static final RegistryObject<EntityType<Doll>> DOLL = ENTITY_TYPES.register("doll", () -> EntityType.Builder.of(Doll::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build(new ResourceLocation(MODID, "doll").toString()));
 
-    //public static final RegistryObject<Block> doll_shelf = BLOCKS.register("doll_shelf"() -> new BlockBehaviour.Properties();
+    public static final RegistryObject<Block> doll_shelf = BLOCKS.register("doll_shelf", () -> new DollShelf(BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.WOOD)));
 
+    public static final RegistryObject<Item> doll_shelf_item = ITEMS.register("doll_shelf", () -> new BlockItem(doll_shelf.get(), new Item.Properties()));
     public static final RegistryObject<Item> grimoire_book = ITEMS.register("grimoire_book", () -> new GrimoireBook(new Item.Properties()));
     public static final RegistryObject<Item> doll_spawn_clockwork = ITEMS.register("doll_spawn_clockwork", () -> new DollSpawnClockwork(new Item.Properties()));
 
@@ -35,9 +42,10 @@ public class Registies {
             .title(Component.translatable("mytabname"))
             .icon(() -> new ItemStack(grimoire_book.get()))
             .displayItems((parm, output) -> {
-                //output.accept(myblockitem.get());
+                output.accept(doll_shelf_item.get());
                 output.accept(grimoire_book.get());
                 output.accept(doll_spawn_clockwork.get());
             })
             .build());
+
 }
