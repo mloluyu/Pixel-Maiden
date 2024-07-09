@@ -33,4 +33,8 @@ public class Doll extends PathfinderMob implements InventoryCarrier {
     public SimpleContainer getInventory() {
         return this.inventory;
     }
+
+    protected void registerGoals() {
+        
+    }
 }

@@ -10,6 +10,12 @@ import net.minecraft.world.level.Level;
 import top.chinuomlo.pixelmaiden.Registies;
 import top.chinuomlo.pixelmaiden.entity.Doll;
 
+/**
+ * 2024-7-8
+ * @author mloluyu
+ * 该类已完善
+ */
+
 public class DollSpawnClockwork extends Item {
     public DollSpawnClockwork(Properties properties) {
         super(properties);
