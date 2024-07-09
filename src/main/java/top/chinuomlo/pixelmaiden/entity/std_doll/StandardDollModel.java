@@ -1,4 +1,4 @@
-package top.chinuomlo.pixelmaiden.entity;
+package top.chinuomlo.pixelmaiden.entity.std_doll;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -7,18 +7,15 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 
 import static top.chinuomlo.pixelmaiden.PixelMaiden.MODID;
 
-public class DollModel<T extends Doll> extends EntityModel<T> {
+public class StandardDollModel<T extends StandardDoll> extends EntityModel<T> {
     public static final ModelLayerLocation LAYER_LOCATION = new ModelLayerLocation(new ResourceLocation(MODID, "doll"), "main");
     private final ModelPart bb_main;
 
-    public DollModel(ModelPart root) {
+    public StandardDollModel(ModelPart root) {
         this.bb_main = root.getChild("bb_main");
     }
 
@@ -32,7 +29,7 @@ public class DollModel<T extends Doll> extends EntityModel<T> {
     }
 
     @Override
-    public void setupAnim(Doll entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+    public void setupAnim(StandardDoll entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 
     }
 

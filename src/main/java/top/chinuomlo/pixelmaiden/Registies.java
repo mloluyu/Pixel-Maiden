@@ -16,7 +16,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import top.chinuomlo.pixelmaiden.block.DollShelf;
-import top.chinuomlo.pixelmaiden.entity.Doll;
+import top.chinuomlo.pixelmaiden.entity.std_doll.StandardDoll;
 import top.chinuomlo.pixelmaiden.item.DollSpawnClockwork;
 import top.chinuomlo.pixelmaiden.item.GrimoireBook;
 
@@ -28,7 +28,7 @@ public class Registies {
     protected static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, MODID);
     protected static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final RegistryObject<EntityType<Doll>> DOLL = ENTITY_TYPES.register("doll", () -> EntityType.Builder.of(Doll::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build(new ResourceLocation(MODID, "doll").toString()));
+    public static final RegistryObject<EntityType<StandardDoll>> STANDARD_DOLL = ENTITY_TYPES.register("standard_doll", () -> EntityType.Builder.of(StandardDoll::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build(new ResourceLocation(MODID, "standard_doll").toString()));
 
     public static final RegistryObject<Block> doll_shelf = BLOCKS.register("doll_shelf", () -> new DollShelf(BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.WOOD)));
 

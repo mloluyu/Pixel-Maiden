@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import top.chinuomlo.pixelmaiden.entity.Doll;
+import top.chinuomlo.pixelmaiden.entity.std_doll.StandardDoll;
 
 import static top.chinuomlo.pixelmaiden.Registies.*;
 
@@ -34,7 +34,7 @@ public class PixelMaiden {
     }
 
     private void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(DOLL.get(), Doll.createAttributes().build());
+        event.put(STANDARD_DOLL.get(), StandardDoll.createAttributes().build());
     }
 }
 

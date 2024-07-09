@@ -1,4 +1,4 @@
-package top.chinuomlo.pixelmaiden.entity;
+package top.chinuomlo.pixelmaiden.entity.std_doll;
 
 import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.entity.EntityType;
@@ -10,12 +10,12 @@ import net.minecraft.world.entity.ai.control.FlyingMoveControl;
 import net.minecraft.world.entity.npc.InventoryCarrier;
 import net.minecraft.world.level.Level;
 
-public class Doll extends PathfinderMob implements InventoryCarrier {
+public class StandardDoll extends PathfinderMob implements InventoryCarrier {
 
     private final SimpleContainer inventory = new SimpleContainer(5);//创建物品栏
-    //private final
+    private int mana = 10;//给人偶设定一个魔力的数值，魔力用完后需返回置物架充能
 
-    public Doll(EntityType<? extends Doll> entity, Level level) {
+    public StandardDoll(EntityType<? extends StandardDoll> entity, Level level) {
         super(entity, level);
         this.moveControl = new FlyingMoveControl(this, 20, true);
         this.setCanPickUpLoot(this.canPickUpLoot());
@@ -36,5 +36,9 @@ public class Doll extends PathfinderMob implements InventoryCarrier {
 
     protected void registerGoals() {
         
+    }
+
+    public void deductMana() {
+
     }
 }

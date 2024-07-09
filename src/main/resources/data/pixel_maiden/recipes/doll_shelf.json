@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "#": {
+      "tag": "minecraft:planks"
+    },
+    "*": {
+      "tag": "minecraft:wooden_slabs"
+    },
+    "&": {
+      "item": "minecraft:scaffolding"
+    }
+  },
+  "pattern": [
+    "###",
+    "*&*",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "item": "pixel_maiden:doll_shelf"
+  }
+}

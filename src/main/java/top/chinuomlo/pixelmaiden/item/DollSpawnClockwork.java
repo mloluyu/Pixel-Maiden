@@ -8,7 +8,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import top.chinuomlo.pixelmaiden.Registies;
-import top.chinuomlo.pixelmaiden.entity.Doll;
+import top.chinuomlo.pixelmaiden.entity.std_doll.StandardDoll;
 
 /**
  * 2024-7-8
@@ -30,9 +30,9 @@ public class DollSpawnClockwork extends Item {
             Player player = context.getPlayer();
             if (player != null && player.mayUseItemAt(pos, context.getClickedFace(), itemstack)) {
                 // 生成生物实体
-                Doll doll = new Doll(Registies.DOLL.get(), world);
-                doll.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getRandom().nextFloat() * 360.0F, 0.0F);
-                world.addFreshEntity(doll);
+                StandardDoll standardDoll = new StandardDoll(Registies.STANDARD_DOLL.get(), world);
+                standardDoll.moveTo(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, world.getRandom().nextFloat() * 360.0F, 0.0F);
+                world.addFreshEntity(standardDoll);
 
                 if (!player.getAbilities().instabuild) {
                     itemstack.shrink(1);
