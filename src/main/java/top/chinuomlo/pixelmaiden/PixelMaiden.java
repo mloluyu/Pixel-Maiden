@@ -36,6 +36,7 @@ public class PixelMaiden {
     private void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(STANDARD_DOLL.get(), StandardDoll.createAttributes().build());
     }
+
 }
 
 
