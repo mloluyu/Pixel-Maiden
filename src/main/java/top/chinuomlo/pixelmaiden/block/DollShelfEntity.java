@@ -9,12 +9,18 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+import static top.chinuomlo.pixelmaiden.Registies.doll_shelf_entity;
+
 public class DollShelfEntity extends BlockEntity implements Container {
     private static final int MAX_DOLL_COUNT = 8;
     private final NonNullList<ItemStack> items = NonNullList.withSize(8, ItemStack.EMPTY);
 
     public DollShelfEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
         super(p_155228_, p_155229_, p_155230_);
+    }
+
+    public DollShelfEntity(BlockPos worldPosition, BlockState blockState) {
+        this(doll_shelf_entity.get(), worldPosition, blockState);
     }
 
     @Override

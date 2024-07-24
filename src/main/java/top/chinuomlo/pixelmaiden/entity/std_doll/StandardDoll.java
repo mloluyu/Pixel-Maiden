@@ -7,7 +7,9 @@ import net.minecraft.world.entity.PathfinderMob;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.control.FlyingMoveControl;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
 import net.minecraft.world.entity.npc.InventoryCarrier;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
 public class StandardDoll extends PathfinderMob implements InventoryCarrier {
@@ -35,7 +37,7 @@ public class StandardDoll extends PathfinderMob implements InventoryCarrier {
     }
 
     protected void registerGoals() {
-        
+        this.goalSelector.addGoal(0, new LookAtPlayerGoal(this, Player.class, 8.0F));
     }
 
     public void deductMana() {

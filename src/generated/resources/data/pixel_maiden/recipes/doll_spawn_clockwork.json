@@ -1,20 +1,20 @@
 {
   "type": "minecraft:crafting_shaped",
+  "category": "misc",
   "key": {
     "#": {
-      "item": "minecraft:netherite_ingot"
-    },
-    "X": {
       "item": "minecraft:copper_block"
+    },
+    "&": {
+      "item": "minecraft:netherite_ingot"
     }
   },
   "pattern": [
     " # ",
-    "#X#",
+    "#&#",
     " # "
   ],
   "result": {
-    "count": 1,
     "item": "pixel_maiden:doll_spawn_clockwork"
   },
   "show_notification": true
