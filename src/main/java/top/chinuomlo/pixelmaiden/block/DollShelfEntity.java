@@ -1,66 +1,103 @@
 package top.chinuomlo.pixelmaiden.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
-import net.minecraft.world.Container;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 import static top.chinuomlo.pixelmaiden.Registies.doll_shelf_entity;
 
-public class DollShelfEntity extends BlockEntity implements Container {
-    private static final int MAX_DOLL_COUNT = 8;
-    private final NonNullList<ItemStack> items = NonNullList.withSize(8, ItemStack.EMPTY);
+public class DollShelfEntity extends BlockEntity {
 
-    public DollShelfEntity(BlockEntityType<?> p_155228_, BlockPos p_155229_, BlockState p_155230_) {
-        super(p_155228_, p_155229_, p_155230_);
+    private static final int MAX_DOLL_COUNT = 4;
+
+    public DollShelfEntity(BlockEntityType<?> pType, BlockPos pPos, BlockState pBlockState) {
+        super(pType, pPos, pBlockState);
     }
 
     public DollShelfEntity(BlockPos worldPosition, BlockState blockState) {
         this(doll_shelf_entity.get(), worldPosition, blockState);
     }
 
-    @Override
-    public int getContainerSize() {
-        return 8;
+    private final ItemStackHandler dolls = new ItemStackHandler(4){
+        @Override
+        protected void onContentsChanged(int slot) {
+            setChanged();
+            level.sendBlockUpdated(worldPosition, getBlockState(), getBlockState(), Block.UPDATE_ALL);
+        }
+    };
+
+    private static final String TAG_NAME = "Doll";
+    private final LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> dolls);
+
+    public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+        if (cap == ForgeCapabilities.ITEM_HANDLER) {
+            return itemHandler.cast();
+        } else {
+            return super.getCapability(cap, side);
+        }
+    }
+
+    private void savedata(CompoundTag tag) {
+        tag.put(TAG_NAME, dolls.serializeNBT());
+    }
+
+    private void loaddata(CompoundTag tag) {
+        if (tag.contains(TAG_NAME)) {
+            dolls.deserializeNBT(tag.getCompound(TAG_NAME));
+        }
     }
 
     @Override
-    public boolean isEmpty() {
-        return this.items.stream().allMatch(ItemStack::isEmpty);
+    protected void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        savedata(tag);
     }
-
     @Override
-    public ItemStack getItem(int p_18941_) {
-        return this.items.get(p_18941_);
+    public void load(CompoundTag tag) {
+        super.load(tag);
+        loaddata(tag);
     }
-
-    /*使用魔法书召唤人偶达成将人偶从柜子中移除的效果*/
     @Override
-    public ItemStack removeItem(int p_18942_, int p_18943_) {
-        return null;
+    public CompoundTag getUpdateTag() {
+        CompoundTag tag = super.getUpdateTag();
+        savedata(tag);
+        return tag;
     }
-
     @Override
-    public ItemStack removeItemNoUpdate(int p_18951_) {
-        return null;
+    public void handleUpdateTag(CompoundTag tag) {
+        if (tag != null) {
+            loaddata(tag);
+        }
     }
-
     @Override
-    public void setItem(int p_18944_, ItemStack p_18945_) {
-
+    public ClientboundBlockEntityDataPacket getUpdatePacket() {
+        return ClientboundBlockEntityDataPacket.create(this);
     }
-
     @Override
-    public boolean stillValid(Player player) {
-        return Container.stillValidBlockEntity(this, player);
+    public void onDataPacket(Connection connection, ClientboundBlockEntityDataPacket packet) {
+        CompoundTag tag = packet.getTag();
+        if (tag != null) {
+            handleUpdateTag(tag);
+        }
     }
 
-    @Override
-    public void clearContent() {
-        this.items.clear();
+    public void servertick() {
+
     }
+    public void clienttick() {
+
+    }
+
+
 }

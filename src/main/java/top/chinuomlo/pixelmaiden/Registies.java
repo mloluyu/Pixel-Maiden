@@ -35,7 +35,7 @@ public class Registies {
     public static final RegistryObject<EntityType<StandardDoll>> STANDARD_DOLL = ENTITY_TYPES.register("standard_doll", () -> EntityType.Builder.of(StandardDoll::new, MobCategory.CREATURE).sized(0.3F, 0.3F).build(new ResourceLocation(MODID, "standard_doll").toString()));
 
     public static final RegistryObject<Block> doll_shelf = BLOCKS.register("doll_shelf", () -> new DollShelf(BlockBehaviour.Properties.of().strength(3.0f).sound(SoundType.WOOD)));
-    public static final RegistryObject<BlockEntityType<DollShelfEntity>> doll_shelf_entity = BLOCK_ENTITY_TYPES.register("doll_shelf", () -> BlockEntityType.Builder.of(DollShelfEntity::new, doll_shelf.get()).build(DSL.remainderType()));
+    public static final RegistryObject<BlockEntityType<DollShelfEntity>> doll_shelf_entity = BLOCK_ENTITY_TYPES.register("doll_shelf", () -> BlockEntityType.Builder.of(DollShelfEntity::new, doll_shelf.get()).build(null));
 
     public static final RegistryObject<Item> doll_shelf_item = ITEMS.register("doll_shelf", () -> new BlockItem(doll_shelf.get(), new Item.Properties()));
     public static final RegistryObject<Item> grimoire_book = ITEMS.register("grimoire_book", () -> new GrimoireBook(new Item.Properties()));
@@ -50,5 +50,6 @@ public class Registies {
                 output.accept(doll_spawn_clockwork.get());
             })
             .build());
+
 
 }

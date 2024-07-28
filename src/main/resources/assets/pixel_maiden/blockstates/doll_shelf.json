@@ -1,0 +1,24 @@
+{
+  "variants": {
+    "": { "model": "pixel_maiden:block/doll_shelf"},
+    "facing=north":
+      {
+        "model": "pixel_maiden:block/doll_shelf"
+      },
+    "facing=south":
+      {
+        "model": "pixel_maiden:block/doll_shelf",
+        "y": 180
+      },
+    "facing=east":
+      {
+        "model": "pixel_maiden:block/doll_shelf",
+        "y": 90
+      },
+    "facing=west":
+      {
+        "model": "pixel_maiden:block/doll_shelf",
+        "y": 270
+      }
+  }
+}
