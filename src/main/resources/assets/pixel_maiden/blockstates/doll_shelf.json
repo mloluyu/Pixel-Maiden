@@ -1,6 +1,5 @@
 {
   "variants": {
-    "": { "model": "pixel_maiden:block/doll_shelf"},
     "facing=north":
       {
         "model": "pixel_maiden:block/doll_shelf"

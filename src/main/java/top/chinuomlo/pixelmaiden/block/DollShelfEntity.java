@@ -29,6 +29,7 @@ public class DollShelfEntity extends BlockEntity {
         this(doll_shelf_entity.get(), worldPosition, blockState);
     }
 
+
     private final ItemStackHandler dolls = new ItemStackHandler(4){
         @Override
         protected void onContentsChanged(int slot) {

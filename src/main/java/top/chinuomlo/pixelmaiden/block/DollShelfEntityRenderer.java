@@ -8,16 +8,14 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 
 import static top.chinuomlo.pixelmaiden.Registies.doll_shelf_entity;
 
 public class DollShelfEntityRenderer implements BlockEntityRenderer<DollShelfEntity> {
-    private final BlockEntityRendererProvider.Context context;
+
     public DollShelfEntityRenderer(BlockEntityRendererProvider.Context pContext) {
-        this.context = pContext;
     }
 
     @Override

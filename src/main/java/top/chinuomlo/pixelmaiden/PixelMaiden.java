@@ -1,7 +1,6 @@
 package top.chinuomlo.pixelmaiden;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,7 +10,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
-import top.chinuomlo.pixelmaiden.block.DollShelfEntityRenderer;
 import top.chinuomlo.pixelmaiden.entity.std_doll.StandardDoll;
 
 import static top.chinuomlo.pixelmaiden.Registies.*;
